@@ -134,6 +134,22 @@
       transition: background 0.2s;
     }
     .nav-cta:hover { background: #0046d4; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
 
     /* ============================================================
        SECTION 3 — HERO
@@ -655,6 +671,7 @@
       #disclaimer { font-size: 10px; padding: 7px 12px; }
       .nav-inner { padding: 0 16px; }
       .logo-text { font-size: 12px; }
+      .nav-link { display: none; }
       .nav-cta { font-size: 11px; padding: 8px 14px; letter-spacing: 0.02em; }
 
       #hero { padding: 80px 20px 60px; }
@@ -699,13 +716,17 @@
   ============================================================ -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="Europa Research">
+      <a href="index.html" class="nav-logo" aria-label="Europa Research">
         <span class="logo-text">EUROPA RESEARCH</span>
         <svg class="logo-hex" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M20 2L37.32 12V32L20 42L2.68 32V12L20 2Z" stroke="#0D1B4B" stroke-width="2.5" fill="none"/>
         </svg>
       </a>
-      <a href="https://t.me/EuropaResearch" class="nav-cta" target="_blank" rel="noopener">Unirse al Telegram →</a>
+      <div class="nav-links">
+        <a href="about.html" class="nav-link">Sobre Nosotros</a>
+        <a href="contact.html" class="nav-link">Contacto</a>
+        <a href="https://t.me/EuropaResearch" class="nav-cta" target="_blank" rel="noopener">Unirse al Telegram →</a>
+      </div>
     </div>
   </nav>
 
@@ -895,9 +916,11 @@
         <p class="footer-desc">Compuestos de investigación con estándar europeo para uso exclusivo en laboratorio.</p>
       </div>
       <div class="footer-links">
-        <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Catálogo en Telegram</a>
-        <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Informes de Laboratorio</a>
-<a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Información de Envío</a>
+        <a href="about.html">Sobre Nosotros</a>
+        <a href="contact.html">Contacto</a>
+        <a href="terms.html">Términos de Servicio</a>
+        <a href="privacy.html">Política de Privacidad</a>
+        <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Telegram</a>
       </div>
       <div class="footer-legal-block">
         <p class="footer-legal-para">Todos los productos de Europa Research están destinados exclusivamente a fines de investigación y laboratorio. No son para uso diagnóstico, terapéutico o en humanos. Europa Research no es un proveedor médico ni farmacéutico. Los productos no están aprobados por la FDA ni por ningún organismo regulador para uso humano. Úselos únicamente bajo la supervisión de profesionales cualificados en instalaciones de investigación acreditadas.</p>
