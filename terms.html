@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Términos de Servicio — Europa Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --navy:       #0D1B4B;
+      --navy-deep:  #050D1F;
+      --cobalt:     #0057FF;
+      --electric:   #5BB4FF;
+      --telegram:   #229ED9;
+      --white:      #FFFFFF;
+      --offwhite:   #F4F6FA;
+      --grey-body:  #555E6C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      background: var(--offwhite);
+      color: var(--grey-body);
+      line-height: 1.8;
+    }
+
+    /* ── Disclaimer Bar ── */
+    #disclaimer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--navy-deep);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      text-align: center;
+      padding: 7px 16px;
+      line-height: 1.4;
+    }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgba(5, 13, 31, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: top 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-brand svg {
+      flex-shrink: 0;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--cobalt);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: #0047d4;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta .arrow { font-style: normal; }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      background: var(--navy);
+      padding: 80px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,87,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero .eyebrow {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      background: rgba(0,87,255,0.12);
+      border: 1px solid rgba(0,87,255,0.3);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 64px);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .page-hero .subtext {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+    }
+
+    /* ── Article Content ── */
+    .article-wrap {
+      background: var(--offwhite);
+      padding: 100px 32px;
+    }
+
+    .article {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .article section {
+      margin-bottom: 48px;
+    }
+
+    .article section:last-child {
+      margin-bottom: 0;
+    }
+
+    .article h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .article p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--grey-body);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .article p:last-child { margin-bottom: 0; }
+
+    .article ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+
+    .article ul li {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--grey-body);
+      line-height: 1.8;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .article ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--cobalt);
+      font-weight: 400;
+    }
+
+    .article .legal-notice {
+      margin-top: 56px;
+      padding: 24px 28px;
+      background: rgba(13,27,75,0.05);
+      border-left: 3px solid var(--cobalt);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .article .legal-notice p {
+      font-size: 14px;
+      color: var(--grey-body);
+      margin: 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy-deep);
+      padding: 72px 32px 0;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.6fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+
+    .footer-brand-col .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      text-decoration: none;
+    }
+
+    .footer-brand-col .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .footer-brand-col p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .footer-links-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+
+    .footer-links-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links-col ul li a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links-col ul li a:hover {
+      color: var(--white);
+    }
+
+    .footer-legal-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+
+    .footer-legal-col p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ── Scroll Reveal ── */
+    .js-ready .scroll-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .js-ready .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+
+      .nav-brand span { display: none; }
+
+      .page-hero { padding: 60px 20px; }
+
+      .article-wrap { padding: 60px 20px; }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-bottom: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Disclaimer Bar -->
+  <div id="disclaimer">
+    ⚠ Todos los productos están destinados exclusivamente para uso en laboratorio e investigación — no para consumo humano.
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Europa Research — inicio">
+        <!-- Hexagon SVG -->
+        <svg width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 1L30.9282 9.5V26.5L16 35L1.07178 26.5V9.5L16 1Z" fill="var(--navy)" stroke="var(--cobalt)" stroke-width="1.5"/>
+          <path d="M16 7L25.9282 12.5V23.5L16 29L6.07178 23.5V12.5L16 7Z" fill="rgba(0,87,255,0.15)"/>
+          <path d="M10 17.5L14 21L22 14" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>EUROPA RESEARCH</span>
+      </a>
+      <a href="https://t.me/EuropaResearch" class="nav-cta" target="_blank" rel="noopener noreferrer">
+        Unirse al Telegram <span class="arrow">→</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero" role="banner">
+    <div class="eyebrow">LEGAL</div>
+    <h1>Términos de Servicio</h1>
+    <p class="subtext">Última actualización: Abril 2026</p>
+  </header>
+
+  <!-- Article Content -->
+  <main class="article-wrap" id="main-content">
+    <article class="article" aria-label="Términos de Servicio">
+
+      <section class="scroll-reveal">
+        <h2>1. Aceptación de los Términos</h2>
+        <p>Al acceder y utilizar el sitio web y los servicios de Europa Research, aceptas y te comprometes a cumplir estos Términos de Servicio. Si no estás de acuerdo con estos términos, por favor no utilices nuestros servicios.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>2. Productos y Servicios</h2>
+        <p>Todos los productos vendidos por Europa Research están destinados exclusivamente para uso en laboratorio e investigación. Al adquirir nuestros productos, confirmas que eres un investigador cualificado o representas a una institución de investigación autorizada. Los productos no están destinados para consumo humano, uso veterinario ni ninguna aplicación fuera de la investigación científica legítima.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>3. Elegibilidad</h2>
+        <p>Para utilizar nuestros servicios, debes:</p>
+        <ul>
+          <li>Tener al menos 18 años de edad</li>
+          <li>Tener la capacidad legal para celebrar contratos vinculantes</li>
+          <li>Utilizar los productos exclusivamente con fines de investigación lícita</li>
+          <li>Cumplir con todas las leyes locales, estatales, nacionales e internacionales aplicables</li>
+        </ul>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>4. Pedidos y Pago</h2>
+        <p>Todos los pedidos están sujetos a aceptación y disponibilidad. Nos reservamos el derecho de rechazar o cancelar cualquier pedido por cualquier motivo. El pago debe recibirse en su totalidad antes de que se realice el envío.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>5. Envío y Entrega</h2>
+        <p>Nos esforzamos por enviar todos los pedidos con prontitud. Los tiempos de envío son estimaciones únicamente y no están garantizados. Europa Research no se responsabiliza por retrasos causados por aduanas, transportistas o circunstancias fuera de nuestro control.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>6. Devoluciones y Reembolsos</h2>
+        <p>Debido a la naturaleza de nuestros productos, generalmente no aceptamos devoluciones. Sin embargo, si recibes un producto dañado o incorrecto, contáctanos dentro de los 7 días posteriores a la entrega. Los reembolsos o reemplazos se proporcionarán a nuestra discreción.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>7. Limitación de Responsabilidad</h2>
+        <p>Europa Research no será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos derivados del uso de nuestros productos o servicios. Nuestra responsabilidad total no superará el monto pagado por el producto específico en cuestión.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>8. Propiedad Intelectual</h2>
+        <p>Todo el contenido de este sitio web, incluidos textos, gráficos, logotipos e imágenes, es propiedad de Europa Research y está protegido por las leyes de propiedad intelectual aplicables. El uso no autorizado está prohibido.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>9. Cambios en los Términos</h2>
+        <p>Nos reservamos el derecho de modificar estos Términos de Servicio en cualquier momento. Los cambios entrarán en vigor de inmediato tras su publicación en el sitio web. El uso continuado de nuestros servicios constituye la aceptación de los términos actualizados.</p>
+      </section>
+
+      <section class="scroll-reveal">
+        <h2>10. Contacto</h2>
+        <p>Para preguntas sobre estos Términos de Servicio, contáctanos a través de nuestro <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener noreferrer" style="color:var(--cobalt);text-decoration:none;font-weight:400;">grupo de Telegram</a> o mediante la página de Contacto.</p>
+      </section>
+
+      <div class="legal-notice scroll-reveal">
+        <p>Aviso legal: Europa Research no está afiliado con Meta Platforms, Inc. ni con ninguna de sus marcas. Todos los productos de investigación están destinados exclusivamente para uso en laboratorio.</p>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-grid">
+
+      <!-- Brand Column -->
+      <div class="footer-brand-col">
+        <a href="/" class="brand-lockup" aria-label="Europa Research — inicio">
+          <svg width="28" height="32" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 1L30.9282 9.5V26.5L16 35L1.07178 26.5V9.5L16 1Z" fill="var(--navy)" stroke="var(--cobalt)" stroke-width="1.5"/>
+            <path d="M16 7L25.9282 12.5V23.5L16 29L6.07178 23.5V12.5L16 7Z" fill="rgba(0,87,255,0.15)"/>
+            <path d="M10 17.5L14 21L22 14" stroke="var(--electric)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-name">EUROPA RESEARCH</span>
+        </a>
+        <p>Compuestos de investigación de alta pureza para laboratorios y estudios científicos avanzados.</p>
+      </div>
+
+      <!-- Links Column -->
+      <div class="footer-links-col">
+        <h4>Acceso Rápido</h4>
+        <ul>
+          <li><a href="https://t.me/EuropaResearch" target="_blank" rel="noopener noreferrer">Catálogo</a></li>
+          <li><a href="https://t.me/EuropaResearch" target="_blank" rel="noopener noreferrer">Hacer un Pedido</a></li>
+          <li><a href="https://t.me/EuropaResearch" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+          <li><a href="/terms.html">Términos de Servicio</a></li>
+          <li><a href="/privacy.html">Política de Privacidad</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Column -->
+      <div class="footer-legal-col">
+        <h4>Aviso Legal</h4>
+        <p>Todos los productos de Europa Research están destinados exclusivamente para uso en laboratorio e investigación científica. No están destinados para consumo humano, diagnóstico médico ni aplicaciones terapéuticas. El uso indebido es responsabilidad exclusiva del comprador. Europa Research no está afiliado con Meta Platforms, Inc. ni con ninguna de sus marcas.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Europa Research. Todos los derechos reservados.</p>
+      <p>
+        <a href="/terms.html">Términos</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/privacy.html">Privacidad</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://t.me/EuropaResearch" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Layout: set body padding-top from disclaimer + navbar ── */
+      var disclaimer = document.getElementById('disclaimer');
+      var navbar = document.getElementById('navbar');
+
+      function updateLayout() {
+        var disclaimerH = disclaimer.offsetHeight;
+        navbar.style.top = disclaimerH + 'px';
+        document.body.style.paddingTop = (disclaimerH + navbar.offsetHeight) + 'px';
+      }
+
+      updateLayout();
+      window.addEventListener('resize', updateLayout);
+
+      /* ── Navbar hide/show on scroll ── */
+      var lastScrollY = window.pageYOffset;
+      var navbarHidden = false;
+
+      window.addEventListener('scroll', function () {
+        var currentY = window.pageYOffset;
+        if (currentY > lastScrollY && currentY > 80 && !navbarHidden) {
+          navbar.style.transform = 'translateY(-100%)';
+          navbarHidden = true;
+        } else if (currentY < lastScrollY && navbarHidden) {
+          navbar.style.transform = 'translateY(0)';
+          navbarHidden = false;
+        }
+        lastScrollY = currentY;
+      }, { passive: true });
+
+      /* ── Scroll Reveal ── */
+      document.body.classList.add('js-ready');
+
+      var revealEls = document.querySelectorAll('.scroll-reveal');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
