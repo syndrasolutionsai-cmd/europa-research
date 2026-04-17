@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Europa Research — Compuestos de Investigación Verificados</title>
+  <meta name="description" content="Compuestos de investigación con COAs por lote, verificación LC-MS independiente y estándares europeos cGMP. Solo uso en laboratorio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800;900&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- TOKENS ---- */
+    :root {
+      --navy:         #0D1B4B;
+      --navy-deep:    #050D1F;
+      --cobalt:       #0057FF;
+      --electric:     #5BB4FF;
+      --telegram:     #229ED9;
+      --white:        #FFFFFF;
+      --offwhite:     #F4F6FA;
+      --amber-bg:     #FFF8EC;
+      --amber-border: #C97A00;
+      --amber-text:   #7A4A00;
+      --green:        #1A7A4A;
+      --grey-body:    #555E6C;
+    }
+
+    /* ---- RESET ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+      padding-top: 29px; /* offset for fixed disclaimer bar */
+    }
+
+    /* ---- HEX GRID BACKGROUND ---- */
+    .hex-bg {
+      background-color: var(--navy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,2 78,23 78,69 40,90 2,69 2,23' fill='none' stroke='%235BB4FF' stroke-width='0.8' opacity='0.06'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ---- SECTION SHELLS ---- */
+    .section-white    { background: var(--white);    padding: 100px 32px; }
+    .section-offwhite { background: var(--offwhite); padding: 100px 32px; }
+    .section-navy     { background: var(--navy);     padding: 100px 32px; }
+
+    /* ---- SHARED EYEBROW ---- */
+    .section-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--cobalt);
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 64px;
+    }
+
+    /* ---- SHARED ACCENT ---- */
+    .accent { color: var(--electric); }
+
+    /* ============================================================
+       SECTION 1 — DISCLAIMER BAR
+    ============================================================ */
+    #disclaimer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      background: var(--navy);
+      color: rgba(255,255,255,0.82);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      text-align: center;
+      padding: 7px 16px;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       SECTION 2 — NAV
+    ============================================================ */
+    #navbar {
+      position: sticky;
+      top: 29px;
+      z-index: 9998;
+      background: var(--white);
+      border-bottom: 1px solid rgba(13,27,75,0.1);
+      transition: transform 0.3s ease;
+    }
+    #navbar.hide { transform: translateY(-100%); }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+    .logo-hex {
+      width: 26px;
+      height: 30px;
+    }
+    .nav-cta {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--white);
+      background: var(--cobalt);
+      text-decoration: none;
+      padding: 10px 22px;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #0046d4; }
+
+    /* ============================================================
+       SECTION 3 — HERO
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 32px 80px;
+    }
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--cobalt);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+    .hero-sub {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 19px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .badge {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--cobalt);
+      border: 1px solid var(--cobalt);
+      padding: 6px 14px;
+      border-radius: 3px;
+    }
+    /* Sweep-hover CTA button */
+    .btn-telegram {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--white);
+      text-decoration: none;
+      padding: 18px 48px;
+      background: linear-gradient(to right, #1a85b8 50%, var(--telegram) 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      transition: background-position 0.4s ease;
+      margin-bottom: 20px;
+    }
+    .btn-telegram:hover { background-position: left center; }
+    .tg-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .hero-note {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(255,255,255,0.32);
+      font-style: italic;
+    }
+
+    /* Staggered hero fade-up */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .hero-inner .reveal-item:nth-child(1) { animation-delay: 0.05s; }
+    .hero-inner .reveal-item:nth-child(2) { animation-delay: 0.20s; }
+    .hero-inner .reveal-item:nth-child(3) { animation-delay: 0.35s; }
+    .hero-inner .reveal-item:nth-child(4) { animation-delay: 0.50s; }
+    .hero-inner .reveal-item:nth-child(5) { animation-delay: 0.65s; }
+    .hero-inner .reveal-item:nth-child(6) { animation-delay: 0.75s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SECTION 4 — URGENCY BANNER
+    ============================================================ */
+    #urgency-banner {
+      background: var(--amber-bg);
+      border-top: 3px solid var(--amber-border);
+      border-bottom: 3px solid var(--amber-border);
+      color: var(--amber-text);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+      padding: 20px 32px;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       SECTION 5 — PROOF PILLARS
+    ============================================================ */
+    .pillars-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .pillar {
+      border-top: 1px solid var(--cobalt);
+      padding: 40px 32px;
+      transition: background 0.25s ease, border-top-width 0.2s ease;
+    }
+    .pillar:hover {
+      background: var(--offwhite);
+      border-top-width: 3px;
+    }
+    .pillar-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      color: var(--cobalt);
+      display: block;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .pillar-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .pillar-body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--grey-body);
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       SECTION 6 — JAMA STAT
+    ============================================================ */
+    .stat-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(100px, 20vw, 200px);
+      line-height: 1.0;
+      color: var(--white);
+      margin: 16px 0 24px;
+      letter-spacing: -0.02em;
+    }
+    .stat-claim {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--electric);
+      margin-bottom: 12px;
+    }
+    .stat-source {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+      margin-bottom: 48px;
+    }
+    .stat-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--cobalt);
+      margin: 0 auto 48px;
+    }
+    .stat-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      text-align: left;
+    }
+    .stat-col-left {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+    }
+    .stat-col-right {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--white);
+    }
+
+    /* ============================================================
+       SECTION 7 — COA PROOF
+    ============================================================ */
+    .coa-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    /* Document mockup card */
+    .coa-doc {
+      background: var(--white);
+      border: 1px solid rgba(13,27,75,0.12);
+      box-shadow: 0 4px 28px rgba(13,27,75,0.1);
+      position: relative;
+      overflow: visible;
+    }
+    .coa-verified-stamp {
+      position: absolute;
+      top: 20px;
+      right: -14px;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      padding: 6px 14px;
+      transform: rotate(15deg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.22);
+      z-index: 10;
+    }
+    .coa-header {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+    .coa-rows { padding: 0 20px; }
+    .coa-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(13,27,75,0.07);
+      font-size: 13px;
+    }
+    .coa-row:last-child { border-bottom: none; }
+    .coa-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: #999;
+    }
+    .coa-val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .coa-val.green { color: var(--green); }
+    .coa-foot {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-top: 1px solid rgba(13,27,75,0.07);
+    }
+    .qr-svg { width: 60px; height: 60px; flex-shrink: 0; }
+    .qr-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    /* Right column */
+    .coa-h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(24px, 3.5vw, 38px);
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .coa-body-text {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--grey-body);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .coa-quote {
+      border-left: 3px solid var(--cobalt);
+      padding-left: 20px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 19px;
+      color: var(--cobalt);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .btn-cobalt {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 32px;
+      background: linear-gradient(to right, #0046d4 50%, var(--cobalt) 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      transition: background-position 0.4s ease;
+    }
+    .btn-cobalt:hover { background-position: left center; }
+
+    /* ============================================================
+       SECTION 8 — TRUST COLUMNS
+    ============================================================ */
+    .trust-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .trust-col {
+      border-top: 2px solid var(--cobalt);
+      padding: 40px 40px;
+    }
+    .trust-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--navy);
+      opacity: 0.25;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .trust-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .trust-body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--grey-body);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       SECTION 9 — FINAL CTA
+    ============================================================ */
+    .finalcta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 120px 32px;
+    }
+    .finalcta-h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .finalcta-sub {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .btn-telegram-lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+      text-decoration: none;
+      padding: 20px 56px;
+      background: linear-gradient(to right, #1a85b8 50%, var(--telegram) 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      transition: background-position 0.4s ease;
+    }
+    .btn-telegram-lg:hover { background-position: left center; }
+    .finalcta-note {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* ============================================================
+       SECTION 10 — FOOTER
+    ============================================================ */
+    #footer {
+      background: var(--navy-deep);
+      padding: 80px 32px 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr;
+      gap: 60px;
+      padding-bottom: 60px;
+    }
+    .footer-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .footer-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--white);
+      letter-spacing: 0.07em;
+    }
+    .footer-desc {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.65;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(255,255,255,0.42);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-legal-para {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.75;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      padding: 20px 32px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(255,255,255,0.18);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL — only active once JS adds .js-ready to body
+    ============================================================ */
+    .js-ready .scroll-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .js-ready .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      /* disclaimer height is dynamic — set via JS */
+      #disclaimer { font-size: 10px; padding: 7px 12px; }
+      .nav-inner { padding: 0 16px; }
+      .logo-text { font-size: 12px; }
+      .nav-cta { font-size: 11px; padding: 8px 14px; letter-spacing: 0.02em; }
+
+      #hero { padding: 80px 20px 60px; }
+      .hero-sub { font-size: 16px; }
+      .btn-telegram { font-size: 14px; padding: 16px 20px; width: 100%; justify-content: center; }
+      .badge { font-size: 10px; padding: 5px 10px; }
+
+      .section-white,
+      .section-offwhite,
+      .section-navy { padding: 64px 20px; }
+
+      .pillars-grid { grid-template-columns: 1fr; }
+      .stat-cols { grid-template-columns: 1fr; gap: 24px; }
+
+      .coa-inner { grid-template-columns: 1fr; gap: 40px; }
+      .coa-verified-stamp { right: 8px; top: 12px; font-size: 11px; }
+
+      .trust-grid { grid-template-columns: 1fr; }
+
+      .finalcta-inner { padding: 72px 20px; }
+      .btn-telegram-lg { font-size: 15px; padding: 18px 28px; width: 100%; justify-content: center; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      #footer { padding: 56px 20px 0; }
+
+      .stat-claim { font-size: 18px; }
+      .coa-h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1 — FIXED DISCLAIMER BAR
+  ============================================================ -->
+  <div id="disclaimer">
+    ⚠&nbsp; Todos los productos están destinados exclusivamente para uso en laboratorio e investigación — no para consumo humano.
+  </div>
+
+  <!-- ============================================================
+       SECTION 2 — STICKY NAV
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Europa Research">
+        <span class="logo-text">EUROPA RESEARCH</span>
+        <svg class="logo-hex" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 2L37.32 12V32L20 42L2.68 32V12L20 2Z" stroke="#0D1B4B" stroke-width="2.5" fill="none"/>
+        </svg>
+      </a>
+      <a href="https://t.me/EuropaResearch" class="nav-cta" target="_blank" rel="noopener">Unirse al Telegram →</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 3 — HERO
+  ============================================================ -->
+  <section id="hero" class="hex-bg">
+    <div class="hero-inner">
+      <p class="hero-eyebrow reveal-item">COMPUESTOS DE INVESTIGACIÓN — ESTÁNDAR EUROPEO</p>
+      <h1 class="hero-h1 reveal-item">
+        El proveedor<br>
+        que puedes<br>
+        <span class="accent">verificar.</span>
+      </h1>
+      <p class="hero-sub reveal-item">
+        COAs por lote. Verificación LC-MS independiente. Estándares europeos de fabricación cGMP. Para investigadores que exigen datos — no afirmaciones.
+      </p>
+      <div class="hero-badges reveal-item">
+        <span class="badge">✓ PUREZA 99%+ HPLC</span>
+        <span class="badge">✓ LC-MS VERIFICADO</span>
+        <span class="badge">✓ SOLO USO EN INVESTIGACIÓN</span>
+      </div>
+      <a href="https://t.me/EuropaResearch" class="btn-telegram reveal-item" target="_blank" rel="noopener">
+        <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.24 14.63l-2.95-.924c-.64-.203-.653-.64.136-.95l11.527-4.446c.537-.194 1.006.131.609.937z"/>
+        </svg>
+        Acceder al Catálogo en Telegram →
+      </a>
+      <p class="hero-note reveal-item">Stock en tiempo real · Informes de laboratorio · Soporte de expertos</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — THREE PROOF PILLARS
+  ============================================================ -->
+  <section id="pillars" class="section-white">
+    <p class="section-eyebrow scroll-reveal">POR QUÉ NOS ELIGEN LOS INVESTIGADORES</p>
+    <div class="pillars-grid">
+      <div class="pillar scroll-reveal">
+        <span class="pillar-num">01</span>
+        <h3 class="pillar-title">Verificación Independiente</h3>
+        <p class="pillar-body">Cada lote analizado por laboratorios acreditados de terceros. Pureza por HPLC. Identidad por LC-MS. Recibes el informe real — no un gráfico de marketing.</p>
+      </div>
+      <div class="pillar scroll-reveal">
+        <span class="pillar-num">02</span>
+        <h3 class="pillar-title">Fabricación Estándar Europeo</h3>
+        <p class="pillar-body">Principios cGMP europeos en cada lote. Paneles completos de endotoxinas, esterilidad y metales pesados. Los estándares importan.</p>
+      </div>
+      <div class="pillar scroll-reveal">
+        <span class="pillar-num">03</span>
+        <h3 class="pillar-title">Verifica Antes de Investigar</h3>
+        <p class="pillar-body">COA específico por lote en cada pedido. Código QR para verificar directamente con el laboratorio independiente. Datos reales, no promesas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — JAMA STAT
+  ============================================================ -->
+  <section id="stat" class="hex-bg section-navy">
+    <div class="stat-inner scroll-reveal">
+      <p class="section-eyebrow" style="color:var(--cobalt);">REALIDAD DEL MERCADO</p>
+      <div class="stat-number">1 DE 4</div>
+      <p class="stat-claim">productos analizados contenían compuestos no declarados.</p>
+      <p class="stat-source">(Análisis JAMA, revisado por pares)</p>
+      <div class="stat-divider"></div>
+      <div class="stat-cols">
+        <p class="stat-col-left">COAs falsificados. Viales turbios. Ingredientes desconocidos. La realidad del mercado no verificado en 2026.</p>
+        <p class="stat-col-right">Europa Research envía con identificación LC-MS independiente en cada lote. Datos verificables. No una afirmación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — COA PROOF
+  ============================================================ -->
+  <section id="coa" class="section-offwhite">
+    <div class="coa-inner">
+      <!-- Document mockup -->
+      <div class="coa-doc scroll-reveal">
+        <div class="coa-verified-stamp">VERIFICADO</div>
+        <div class="coa-header">
+          <span>CERTIFICADO DE ANÁLISIS</span>
+          <span>Marzo 2025</span>
+        </div>
+        <div class="coa-rows">
+          <div class="coa-row"><span class="coa-label">Compuesto</span><span class="coa-val">BPC-157</span></div>
+          <div class="coa-row"><span class="coa-label">Lote</span><span class="coa-val">ER-2025-BPC-0441</span></div>
+          <div class="coa-row"><span class="coa-label">Pureza HPLC</span><span class="coa-val green">99.3%</span></div>
+          <div class="coa-row"><span class="coa-label">Identidad LC-MS</span><span class="coa-val green">Confirmada ✓</span></div>
+          <div class="coa-row"><span class="coa-label">Endotoxinas</span><span class="coa-val green">&lt;1 EU/mg ✓</span></div>
+          <div class="coa-row"><span class="coa-label">Esterilidad</span><span class="coa-val green">Aprobada ✓</span></div>
+          <div class="coa-row"><span class="coa-label">Metales Pesados</span><span class="coa-val green">Aprobados ✓</span></div>
+        </div>
+        <div class="coa-foot">
+          <!-- QR placeholder SVG -->
+          <svg class="qr-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Código QR de verificación">
+            <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0D1B4B" stroke-width="2"/>
+            <rect x="6" y="6" width="12" height="12" fill="#0D1B4B"/>
+            <rect x="38" y="2" width="20" height="20" fill="none" stroke="#0D1B4B" stroke-width="2"/>
+            <rect x="42" y="6" width="12" height="12" fill="#0D1B4B"/>
+            <rect x="2" y="38" width="20" height="20" fill="none" stroke="#0D1B4B" stroke-width="2"/>
+            <rect x="6" y="42" width="12" height="12" fill="#0D1B4B"/>
+            <rect x="28" y="2" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="28" y="8" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="34" y="28" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="28" y="34" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="34" y="38" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="40" y="28" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="46" y="34" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="52" y="28" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="40" y="44" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="52" y="44" width="4" height="4" fill="#0D1B4B"/>
+            <rect x="28" y="52" width="4" height="4" fill="#0D1B4B"/>
+          </svg>
+          <p class="qr-label">Escanea para verificar con el laboratorio independiente.</p>
+        </div>
+      </div>
+
+      <!-- Right text -->
+      <div class="coa-text scroll-reveal">
+        <p class="section-eyebrow" style="text-align:left; margin-bottom:20px;">TRANSPARENCIA TOTAL</p>
+        <h2 class="coa-h2">Cualquier proveedor puede imprimir un COA. No todos pueden demostrarlo.</h2>
+        <p class="coa-body-text">En una industria donde los documentos falsificados son habituales, Europa Research publica informes específicos por lote de laboratorios acreditados independientes. Cada compuesto. Cada lote. Sin excepciones.</p>
+        <blockquote class="coa-quote">"Escanea el QR de cada vial. Verifica antes de investigar."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — TRUST COLUMNS
+  ============================================================ -->
+  <section id="trust" class="section-white">
+    <div class="trust-grid">
+      <div class="trust-col scroll-reveal">
+        <span class="trust-num">01</span>
+        <h4 class="trust-title">Calidad Garantizada</h4>
+        <p class="trust-body">Pruebas rigurosas y certificación para los más altos estándares de pureza y calidad.</p>
+      </div>
+      <div class="trust-col scroll-reveal">
+        <span class="trust-num">02</span>
+        <h4 class="trust-title">Envío Rápido</h4>
+        <p class="trust-body">Envío fiable y con seguimiento para una entrega global ágil en todos tus proyectos.</p>
+      </div>
+      <div class="trust-col scroll-reveal">
+        <span class="trust-num">03</span>
+        <h4 class="trust-title">Soporte Experto</h4>
+        <p class="trust-body">Equipo especializado disponible para consultas y asistencia técnica en todas tus necesidades de investigación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9 — FINAL CTA
+  ============================================================ -->
+  <section id="final-cta" class="hex-bg">
+    <div class="finalcta-inner">
+      <h2 class="finalcta-h2 scroll-reveal">
+        Tus protocolos merecen<br>
+        compuestos <span class="accent">verificados.</span>
+      </h2>
+      <p class="finalcta-sub scroll-reveal">
+        Únete a nuestro grupo de Telegram para consultar el stock actual, ver informes de laboratorio y conectar con nuestro equipo.
+      </p>
+      <a href="https://t.me/EuropaResearch" class="btn-telegram-lg scroll-reveal" target="_blank" rel="noopener">
+        <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.24 14.63l-2.95-.924c-.64-.203-.653-.64.136-.95l11.527-4.446c.537-.194 1.006.131.609.937z"/>
+        </svg>
+        Unirse al Grupo de Telegram
+      </a>
+      <p class="finalcta-note scroll-reveal">Solo uso en laboratorio e investigación · No para consumo humano</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10 — FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <span class="footer-logo-text">EUROPA RESEARCH</span>
+          <svg viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="26" aria-hidden="true">
+            <path d="M20 2L37.32 12V32L20 42L2.68 32V12L20 2Z" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" fill="none"/>
+          </svg>
+        </div>
+        <p class="footer-desc">Compuestos de investigación con estándar europeo para uso exclusivo en laboratorio.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Catálogo en Telegram</a>
+        <a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Informes de Laboratorio</a>
+<a href="https://t.me/EuropaResearch" target="_blank" rel="noopener">Información de Envío</a>
+      </div>
+      <div class="footer-legal-block">
+        <p class="footer-legal-para">Todos los productos de Europa Research están destinados exclusivamente a fines de investigación y laboratorio. No son para uso diagnóstico, terapéutico o en humanos. Europa Research no es un proveedor médico ni farmacéutico. Los productos no están aprobados por la FDA ni por ningún organismo regulador para uso humano. Úselos únicamente bajo la supervisión de profesionales cualificados en instalaciones de investigación acreditadas.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Europa Research. Todos los productos están destinados exclusivamente para uso en laboratorio, investigación y análisis — no para consumo humano. Europa Research no está afiliado con Meta Platforms, Inc.
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // Set body padding-top and navbar offset based on real disclaimer height
+    function applyDisclaimerOffset() {
+      var disclaimer = document.getElementById('disclaimer');
+      var navbar = document.getElementById('navbar');
+      var h = disclaimer.offsetHeight;
+      document.body.style.paddingTop = h + 'px';
+      navbar.style.top = h + 'px';
+    }
+    applyDisclaimerOffset();
+    window.addEventListener('resize', applyDisclaimerOffset);
+
+    // Nav hide on scroll down, show on scroll up
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var lastY = window.scrollY;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          navbar.classList.add('hide');
+        } else {
+          navbar.classList.remove('hide');
+        }
+        lastY = y;
+      }, { passive: true });
+    }());
+
+    // Scroll reveal — add js-ready first so CSS hides elements only when JS is running
+    (function () {
+      document.body.classList.add('js-ready');
+      var els = document.querySelectorAll('.scroll-reveal');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { observer.observe(el); });
+    }());
+  </script>
+
+</body>
+</html>
